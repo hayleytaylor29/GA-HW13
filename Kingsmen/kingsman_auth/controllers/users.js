@@ -6,11 +6,11 @@ const User = require('../models/users.js');
 
 //CREATE NEW USER
 router.get('/new', (req, res) => {
-    res.render('./users/new.ejs');
+    res.render('users/new.ejs');
   });
   
-router.post('/new', (req, res) => {
-    users.create(req.body, () => {
+router.post('/', (req, res) => {
+    User.create(req.body, (error, createdUser) => {
         res.redirect('/')
     })
 })
