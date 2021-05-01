@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const session = require('express-session');
 const methodOverride = require('method-override');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const port = 3000;
 
 
@@ -20,6 +20,12 @@ app.use(express.static('public'))
 // fitting room three
 const roomController = require('./controllers/room.js');
 app.use('/room', roomController);
+
+//create a new user
+const userController = require('./controllers/users.js');
+app.use('/users', userController);
+
+
 
 
 // GET INDEX
@@ -53,7 +59,7 @@ app.listen(port, () => {
   console.log('listening on port: ', port);
 });
 
-mongoose.connect('mongodb://localhost:27017/kingsman', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/kingsman', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once('open', () => {
     console.log('connected to mongo');
 });
